@@ -1,5 +1,4 @@
 # nut_influxdb
-python script to grab UPS stats from NUT server
 
 Python script to capture NUT UPS stats and put them into influxdb.
 
