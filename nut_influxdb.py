@@ -47,15 +47,21 @@ while True:
         STATUS = (values[51])
     
     except:
-        # shift values during power outage due to additional status line
-        BCHG = float(values[0])
-        TIMELEFT = round(float(values[2])/60,2)
-        UPSMODEL = (values[5])
-        LINEV = float(values[20])
-        LOAD = float(values[43])
-        SERVER = (values[51])
-        STATUS = (values[52]) 
-        continue
+        try:
+            # shift values during power outage due to additional status line
+            LINEV = float(values[20])
+            LOAD = float(values[43])
+            SERVER = (values[51])
+            STATUS = (values[52])
+        
+        except:
+            BCHG = float(100)
+            TIMELEFT = round(float(30.0)/60)
+            UPSMODEL = ('Script Error')
+            LINEV = float(120)
+            LOAD = float(50)
+            SERVER = ('Script Error')
+            STATUS = ('Script Error')
     
     # Prepare UPS variabes in JSON format for upload to Influxdb
     json_ups = [
